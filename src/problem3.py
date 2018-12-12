@@ -3,11 +3,11 @@ PRACTICE Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Jack Wilson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
-
+import math
 ###############################################################################
 # Students:
 #
@@ -137,8 +137,24 @@ def problem3a(window, point, n):
         :type point:  rg.Point
         :type n:      int
     """
+    total = 0
+    for i in range(n):
+        a = 20 * i + point.x
+        b = 10 * i + point.y
+        p1 = rg.Point(a, b)
+        y = 50 + b
+        p2 = rg.Point(a, y)
+        line = rg.Line(p1, p2)
+        if i >= 7:
+            line.thickness = 13
+        else:
+            line.thickness = 2 * i + 1
+        total += line.thickness
+        line.attach_to(window)
+    window.render()
+    return total
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -201,8 +217,16 @@ def problem3b(m, point1):
         :type m:      int
         :type point1: rg.Point
     """
+    total = 0
+    window = rg.RoseWindow(400, 650)
+    for i in range(1, m + 1):
+        k = 2 * i + 1
+        y = point1.y + 60 * i
+        point = rg.Point(point1.x, y)
+        total += problem3a(window, point, k)
+    return total
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ###########################################################################
@@ -219,4 +243,7 @@ def problem3b(m, point1):
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
+
+
 main()
+

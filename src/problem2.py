@@ -3,8 +3,8 @@ PRACTICE Exam 1, problem 2.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Jack Wilson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -102,8 +102,22 @@ def problem2a(circle, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    y = window.height
+    x = window.width
+    start = rg.Point(x, 0)
+    end = rg.Point(0, y)
+    line = rg.Line(start, end)
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = rectangle.outline_color
+    window.render()
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -111,6 +125,7 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # -------------------------------------------------------------------------
+
 
 def run_test_problem2b():
     """ Tests the  problem2b   function. """
@@ -173,8 +188,24 @@ def problem2b(rect, n, delta, win):
       :type delta:  int
       :type win:    rg.RoseWindow
     """
+    if n < 0:
+        n = -n
+    rect.attach_to(win)
+    down_left = rect.get_lower_left_corner()
+    up_right = rect.get_upper_right_corner()
+    for i in range(n):
+        x1 = down_left.x - delta * i
+        x2 = up_right.x + delta * i
+        y1 = down_left.y + delta * i
+        y2 = up_right.y - delta * i
+        p1 = rg.Point(x1, y1)
+        p2 = rg.Point(x2, y2)
+        rectangle = rg.Rectangle(p1, p2)
+        rectangle.attach_to(win)
+    win.render()
+
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
